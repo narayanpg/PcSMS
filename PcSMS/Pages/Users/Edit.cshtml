@@ -1,0 +1,42 @@
+﻿@page
+@model PcSMS.EditModel
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit User</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="IdentityUser.Id" />
+			<div class="form-group">
+				<label asp-for="IdentityUser.Email" class="control-label"></label>
+				<input asp-for="IdentityUser.Email" class="form-control" />
+				<span asp-validation-for="IdentityUser.Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				@Html.DropDownListFor(
+								x => x.IdentityUser.selectedRole,
+								Model.IdentityUser.Roles,
+								new { @class = "form-control" }
+							)
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Save" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+<div>
+	<a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\aWinter2020\\COMP313 Project2\\PROJECT2\\PcSMS\\PcSMS\\PcSMS.csproj": {}
+    "D:\\aWinter2020\\COMP313 Project2\\PROJECT2-repo\\PcSMS\\PcSMS\\PcSMS.csproj": {}
   },
   "projects": {
-    "D:\\aWinter2020\\COMP313 Project2\\PROJECT2\\PcSMS\\PcSMS\\PcSMS.csproj": {
+    "D:\\aWinter2020\\COMP313 Project2\\PROJECT2-repo\\PcSMS\\PcSMS\\PcSMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2\\PcSMS\\PcSMS\\PcSMS.csproj",
+        "projectUniqueName": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2-repo\\PcSMS\\PcSMS\\PcSMS.csproj",
         "projectName": "PcSMS",
-        "projectPath": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2\\PcSMS\\PcSMS\\PcSMS.csproj",
+        "projectPath": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2-repo\\PcSMS\\PcSMS\\PcSMS.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2\\PcSMS\\PcSMS\\obj\\",
+        "outputPath": "D:\\aWinter2020\\COMP313 Project2\\PROJECT2-repo\\PcSMS\\PcSMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,0 +1,73 @@
+﻿@page
+@model PcSMS.IndexModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<form>
+
+	<h1>Users</h1>
+
+	<br />
+	<br />
+	<div>
+		<div class="container">
+			<div class="row">
+				<a asp-page="/Account/Register" asp-area="Identity" class="btn btn-primary">
+					<i class="fas fa-plus"></i>&nbsp; Create New
+				</a>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+</form>
+<div>
+	@if (Model.IdentityUserList.Count == 0)
+	{
+		<p>No users exist! Please add a new one.</p>
+	}
+	else
+	{
+		<table class="table table-primary border">
+			<tr class="bg-primary">
+				<th>
+					@Html.DisplayNameFor(m => m.IdentityUserList[0].User)
+				</th>
+				<th>
+					@Html.DisplayNameFor(m => m.IdentityUserList[0].Role)
+				</th>
+				@*<th>
+						@Html.DisplayNameFor(m => m.IdentityRoleList[0].Name)
+					</th>*@
+				<th></th>
+			</tr>
+			@foreach (var item in Model.IdentityUserList)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(m => item.User)
+					</td>
+					<td>
+						@Html.DisplayFor(m => item.Role)
+					</td>
+
+					<td style="width:150px;">
+						<div class="btn-group" role="group">
+							<a class="btn btn-info text-white" asp-page="Edit" asp-route-Id="@item.Id">
+								<i class="fas fa-edit"></i>
+							</a>
+
+							<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+								<i class="fas fa-trash-alt"></i>
+							</a>
+						</div>
+
+					</td>
+				</tr>
+			}
+		</table>
+	}
+
+</div>

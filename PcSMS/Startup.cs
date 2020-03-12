@@ -17,6 +17,7 @@ using PcSMS.Services;
 
 namespace PcSMS
 {
+    //this is local repo
     public class Startup
     {
         public Startup(IConfiguration configuration)
