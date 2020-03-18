@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PcSMS.Models;
 
 namespace PcSMS.Data
 {
@@ -14,5 +12,6 @@ namespace PcSMS.Data
         {
         }
         public DbSet<IdentityUser> IdentityUser { get; set; }
+        public DbSet<ServiceType> ServiceType { get; set; }
     }
 }
