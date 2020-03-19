@@ -6,7 +6,12 @@ for details on configuring this project to bundle and minify static web assets. 
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.backgroundWhite {
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
 .nav-text-style {
     font-weight: bold;
     color: #233FC8;

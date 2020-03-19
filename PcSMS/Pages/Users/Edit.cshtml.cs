@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PcSMS.Data;
+using PcSMS.Models;
+using PcSMS.Utility;
 
-namespace PcSMS
+namespace PcSMS.Pages.Users
 {
+    [Authorize(Roles = Who.Admin)]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<IdentityUser> _userManager;
+
 
         public EditModel(ApplicationDbContext db, UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
@@ -26,12 +31,13 @@ namespace PcSMS
         }
 
         [BindProperty]
-        public UpdateUserRoleViewModel IdentityUser { get; set; }
+        //public ApplicationUser ApplicationUser { get; set; }
+        public UpdateUserRoleViewModel ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
             var roles = await _db.Roles.ToListAsync();
-            var users = await _db.IdentityUser.FirstOrDefaultAsync(m => m.Id == id);
+            var users = await _db.ApplicationUser.FirstOrDefaultAsync(m => m.Id == id);
 
 
             if (id.Trim().Length == 0)
@@ -48,6 +54,11 @@ namespace PcSMS
             {
                 Id = id,
                 Email = users.Email,
+                Name = users.Name, 
+                PhoneNumber = users.PhoneNumber, 
+                Address = users.Address, 
+                City = users.City, 
+                PostalCode = users.PostalCode,
                 selectedRole = _userManager.GetRolesAsync(users).Result[0],
                 Roles = roles.Select(x => new SelectListItem
                 {
@@ -55,7 +66,7 @@ namespace PcSMS
                     Text = x.NormalizedName
                 })
             };
-            IdentityUser = viewModel;
+            ApplicationUser = viewModel;
             return Page();
         }
 
@@ -67,23 +78,20 @@ namespace PcSMS
             }
             else
             {
-                var userInDb = await _db.IdentityUser.SingleOrDefaultAsync(u => u.Id == IdentityUser.Id);
+                var userInDb = await _db.ApplicationUser.SingleOrDefaultAsync(u => u.Id == ApplicationUser.Id);
                 if (userInDb == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    userInDb.Email = IdentityUser.Email;
+                    userInDb.Name = ApplicationUser.Name;
+                    userInDb.PhoneNumber = ApplicationUser.PhoneNumber;
+                    userInDb.Address = ApplicationUser.Address;
+                    userInDb.City = ApplicationUser.City;
+                    userInDb.PostalCode = ApplicationUser.PostalCode;
+
                     await _db.SaveChangesAsync();
-                    var previousrole = _userManager.GetRolesAsync(userInDb).Result[0];
-
-                    if (previousrole != IdentityUser.selectedRole)
-                    {
-                        await _userManager.AddToRoleAsync(userInDb, IdentityUser.selectedRole);
-                        await _userManager.RemoveFromRoleAsync(userInDb, previousrole);
-                    }
-
                     return RedirectToPage("Index");
                 }
             }
@@ -92,6 +100,11 @@ namespace PcSMS
         {
             public string Id { get; set; }
             public string Email { get; set; }
+            public string Name { get; set; }
+            public string PhoneNumber { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+            public string PostalCode { get; set; }
             public string selectedRole { get; set; }
             public IEnumerable<SelectListItem> Roles { get; set; }
         }
@@ -99,3 +112,4 @@ namespace PcSMS
 
     }
 }
+
