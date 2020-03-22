@@ -14,7 +14,7 @@ using PcSMS.Utility;
 
 namespace PcSMS.Pages.Users
 {
-    [Authorize(Roles = Who.Admin)]
+    //[Authorize(Roles = Who.Admin)]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;
@@ -92,6 +92,13 @@ namespace PcSMS.Pages.Users
                     userInDb.PostalCode = ApplicationUser.PostalCode;
 
                     await _db.SaveChangesAsync();
+                    var previousrole = _userManager.GetRolesAsync(userInDb).Result[0];
+
+                    if (previousrole != ApplicationUser.selectedRole)
+                    {
+                        await _userManager.AddToRoleAsync(userInDb, ApplicationUser.selectedRole);
+                        await _userManager.RemoveFromRoleAsync(userInDb, previousrole);
+                    }
                     return RedirectToPage("Index");
                 }
             }
