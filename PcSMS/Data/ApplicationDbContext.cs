@@ -14,5 +14,6 @@ namespace PcSMS.Data
         public DbSet<IdentityUser> IdentityUser { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<ServiceType> ServiceType { get; set; }
+        public DbSet<Vessel> Vessel { get; set; }
     }
 }

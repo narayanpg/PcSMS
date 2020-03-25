@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PcSMS.Data;
-using PcSMS.Models;
 using PcSMS.Utility;
 
 namespace PcSMS.Pages.Users
@@ -60,6 +58,7 @@ namespace PcSMS.Pages.Users
                 City = users.City, 
                 PostalCode = users.PostalCode,
                 selectedRole = _userManager.GetRolesAsync(users).Result[0],
+               
                 Roles = roles.Select(x => new SelectListItem
                 {
                     Value = x.NormalizedName,

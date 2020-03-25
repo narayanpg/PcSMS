@@ -528,8 +528,6 @@ D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\bin\Debug\netcoreapp3.
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.csprojAssemblyReference.cache
-D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.MvcApplicationPartsAssemblyInfo.cs
-D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.MvcApplicationPartsAssemblyInfo.cache
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.RazorAssemblyInfo.cache
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.RazorAssemblyInfo.cs
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.AssemblyInfoInputs.cache
@@ -603,3 +601,12 @@ D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\staticwebassets\PcSMS.StaticWebAssets.xml
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.dll
 D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.pdb
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\Razor\Pages\Vessels\Create.cshtml.g.cs
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\Razor\Pages\Vessels\Delete.cshtml.g.cs
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\Razor\Pages\Vessels\Edit.cshtml.g.cs
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\Razor\Pages\Vessels\Index.cshtml.g.cs
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\bin\Debug\netcoreapp3.1\Microsoft.Crm.Sdk.Proxy.dll
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\bin\Debug\netcoreapp3.1\Microsoft.Xrm.Sdk.dll
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.MvcApplicationPartsAssemblyInfo.cs
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\PcSMS.MvcApplicationPartsAssemblyInfo.cache
+D:\aWinter2020\COMP313 Project2\PROJECT2-repo\PcSMS\PcSMS\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_StatusMessage.cshtml.g.cs

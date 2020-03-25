@@ -39,6 +39,11 @@ a {
   border-color: #1861ac;
 }
 
+/*--------------------*/
+.bg-vessels {
+	background-color: #65bad6;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

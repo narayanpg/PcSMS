@@ -12,5 +12,6 @@ namespace PcSMS.Utility
         public const string Customer = "Customer";
         public const string AdminAndStaff = "Admin, Staff";
         public const string All = "Admin, Staff, Customer";
+        public const int PaginationUsersPageSize = 2;
     }
 }
