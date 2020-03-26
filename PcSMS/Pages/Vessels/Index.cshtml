@@ -6,17 +6,16 @@
 	Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<partial name="_StatusMessage" model="Model.StatusMessage" />
 <h2 class="text-info py-2">Vessel Record For Customer</h2>
 
 <div class="container backgroundWhite">
 	<div class="card">
-		<div class="card-header text-light ml-0 row container" style="background-color:#65bad6;">
+		<div class="card-header bg-primary ml-0 row container">
 			<div class="col-6">
 				<i class="fas fa-ship"></i>
 			</div>
 			<div class="col-6 text-right">
-				@if (User.IsInRole(Who.Admin))
+				@if ((User.IsInRole(Who.Admin)) ||(User.IsInRole(Who.Staff)) )
 				{
 					<a asp-page="/Users/Index" class="btn btn-outline-info btn-sm"><span class="text-white">Back to Users</span></a>
 				}
@@ -86,41 +85,42 @@
 					</tr>
 					@foreach (var item in Model.VesselAndCustVM.Vessels)
 					{
-						<tr>
-							<td>
-								@Html.DisplayFor(m => item.IN)
-							</td>							
-							<td>
-								@Html.DisplayFor(m => item.Model)
-							</td>
-							<td>
-								@Html.DisplayFor(m => item.Color)
-							</td>
-							<td>
-								<a class="btn btn-secondary" asp-page="../Services/History" asp-route-carId="@item.Id">
-									<i class="fas fa-wrench"></i> &nbsp; Service History
+				<tr>
+					<td>
+						@Html.DisplayFor(m => item.IN)
+					</td>
+					<td>
+						@Html.DisplayFor(m => item.Model)
+					</td>
+					<td>
+						@Html.DisplayFor(m => item.Color)
+					</td>
+					<td>
+						<a class="btn btn-secondary" asp-page="../Services/History" asp-route-vessId="@item.Id">
+							<i class="fas fa-wrench"></i> &nbsp; Service History
+						</a>
+					</td>
+					@if ((User.IsInRole(Who.Admin)) || (User.IsInRole(Who.Staff)))
+					{
+						<td>
+							<a class="btn btn-success" asp-page="../Services/Create" asp-route-vessId="@item.Id">
+								<i class="fas fa-plus"></i> &nbsp; New Service
+							</a>
+						</td>
+						<td>
+							<div class="btn-group" role="group">
+								<a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+									<i class="fas fa-edit"></i>
+								</a> &nbsp;&nbsp;
+								<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+									<i class="fas fa-trash-alt"></i>
 								</a>
-							</td>
-							@if (User.IsInRole(Who.Admin))
-							{
-								<td>
-									<a class="btn btn-success" asp-page="../Services/Create" asp-route-carId="@item.Id">
-										<i class="fas fa-plus"></i> &nbsp; New Service
-									</a>
-								</td>
-							}
-							<td>
-								<div class="btn-group" role="group">
-									<a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
-										<i class="fas fa-edit"></i>
-									</a> &nbsp;&nbsp;
-									<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
-										<i class="fas fa-trash-alt"></i>
-									</a>
-								</div>
+							</div>
 
-							</td>
-						</tr>
+						</td>
+					}
+
+				</tr>
 					}
 				</table>
 			}

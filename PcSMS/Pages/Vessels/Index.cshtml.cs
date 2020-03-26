@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +10,10 @@ using PcSMS.Models.ViewModels;
 
 namespace PcSMS.Pages.Vessels
 {
+    [Authorize()]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
-
 
         [BindProperty]
         public VesselAndCustomerViewModel VesselAndCustVM { get; set; }

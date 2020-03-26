@@ -221,6 +221,82 @@ namespace PcSMS.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PcSMS.Models.ServiceDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ServiceHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ServicePrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ServiceTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceHeaderId");
+
+                    b.HasIndex("ServiceTypeId");
+
+                    b.ToTable("ServiceDetails");
+                });
+
+            modelBuilder.Entity("PcSMS.Models.ServiceHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("VesselId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VesselId");
+
+                    b.ToTable("ServiceHeader");
+                });
+
+            modelBuilder.Entity("PcSMS.Models.ServiceShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ServiceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VesselId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceTypeId");
+
+                    b.HasIndex("VesselId");
+
+                    b.ToTable("ServiceShoppingCart");
+                });
+
             modelBuilder.Entity("PcSMS.Models.ServiceType", b =>
                 {
                     b.Property<int>("Id")
@@ -337,6 +413,45 @@ namespace PcSMS.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PcSMS.Models.ServiceDetails", b =>
+                {
+                    b.HasOne("PcSMS.Models.ServiceHeader", "ServiceHeader")
+                        .WithMany()
+                        .HasForeignKey("ServiceHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PcSMS.Models.ServiceType", "ServiceType")
+                        .WithMany()
+                        .HasForeignKey("ServiceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PcSMS.Models.ServiceHeader", b =>
+                {
+                    b.HasOne("PcSMS.Models.Vessel", "Vessel")
+                        .WithMany()
+                        .HasForeignKey("VesselId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PcSMS.Models.ServiceShoppingCart", b =>
+                {
+                    b.HasOne("PcSMS.Models.ServiceType", "ServiceType")
+                        .WithMany()
+                        .HasForeignKey("ServiceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PcSMS.Models.Vessel", "Vessel")
+                        .WithMany()
+                        .HasForeignKey("VesselId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

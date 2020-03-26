@@ -12,7 +12,7 @@ using PcSMS.Utility;
 
 namespace PcSMS.Pages.Users
 {
-    //[Authorize(Roles = Who.Admin)]
+    [Authorize(Roles = Who.AdminAndStaff)]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;

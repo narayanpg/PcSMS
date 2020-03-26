@@ -1,12 +1,15 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PcSMS.Data;
 using PcSMS.Models;
+using PcSMS.Utility;
 
 namespace PcSMS.Pages.Vessels
 {
+    [Authorize(Roles = Who.AdminAndStaff)]
     public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _db;

@@ -1,0 +1,85 @@
+﻿@page
+@model PcSMS.Pages.Services.DetailsModel
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-4 pb-2 row">
+	<div class="col-6">
+		<h2 class="text-info py-2">Service Details</h2>
+	</div>
+	<div class="col-3 offset-3 text-right py-2">
+		<a asp-page="/Services/History" asp-route-vessId="@Model.serviceHeader.VesselId" class="btn btn-info form-control"> Back to List</a>
+	</div>
+</div>
+<div class="container backgroundWhite">
+	<div class="card">
+		<div class="card-header bg-primary ml-0 row container">
+			<div class="col-1 text-center pt-3 text-light-50 ">
+				<i class="far fa-user fa-2x"></i>
+			</div>
+			<div class="col-5">
+				<label class="text-light">@Model.serviceHeader.Vessel.ApplicationUser.Name</label><br />
+				<label class="text-light">@Model.serviceHeader.Vessel.ApplicationUser.Email / @Model.serviceHeader.Vessel.ApplicationUser.PhoneNumber</label><br />
+
+			</div>
+
+			<div class="col-5 text-right">
+				<label class="text-light">@Model.serviceHeader.Vessel.Model @Model.serviceHeader.Vessel.Color </label><br />
+				<label class="text-light">@Model.serviceHeader.Vessel.Year </label>
+			</div>
+			<div class="col-1 text-center pt-3 text-light-50 ">
+				<i class="fas fa-ship fa-2x"></i>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row pt-3">
+
+				<div class="col-7">
+
+					<table class="table table-striped border">
+						<tr class="table-secondary">
+							<th>
+								@Html.DisplayNameFor(m => Model.serviceDetails[0].ServiceName)
+							</th>
+							<th>
+								@Html.DisplayNameFor(m => Model.serviceDetails[0].ServicePrice)
+							</th>
+
+						</tr>
+						@foreach (var item in Model.serviceDetails)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(m => item.ServiceName)
+								</td>
+								<td>
+									@Html.DisplayFor(m => item.ServicePrice)
+								</td>
+
+							</tr>
+						}
+						<tr style="background-color:#e2fee2">
+							<td colspan="1">
+								<h6 class="text-success">Total Price :</h6>
+							</td>
+							<td colspan="2">
+								<h6 class="text-success">$@Model.serviceHeader.TotalPrice</h6>
+							</td>
+						</tr>
+
+					</table>
+				</div>
+				<div class="col-5 px-4 pb-2">					
+					<div class="row py-2">
+						<div class="col-12">
+							<textarea placeholder="Comments..." readonly asp-for="serviceHeader.Details" class="form-control" style="height:100px">
+							</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

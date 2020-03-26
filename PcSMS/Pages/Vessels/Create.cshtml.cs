@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PcSMS.Data;
@@ -7,6 +8,7 @@ using PcSMS.Models;
 
 namespace PcSMS.Pages.Vessels
 {
+    [Authorize()]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
@@ -44,7 +46,7 @@ namespace PcSMS.Pages.Vessels
 
             _db.Vessel.Add(Vessel);
             await _db.SaveChangesAsync();
-            StatusMessage = "Car has been added sucessfully.";
+            StatusMessage = "Vessel has been added sucessfully.";
             return RedirectToPage("Index", new { userId = Vessel.UserId });
         }
 

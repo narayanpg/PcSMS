@@ -1,5 +1,6 @@
 ﻿@page
 @model PcSMS.IndexModel
+@using PcSMS.Utility
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -49,7 +50,7 @@
 		<br />
 		<div>
 			<table class="table table-striped border">
-				<tr class="table-secondary">
+				<tr class="bg-primary">
 					<th>
 						@Html.DisplayNameFor(m => m.UsersListVM.ApplicationUserList[0].Name)
 					</th>
@@ -83,9 +84,14 @@
 							<a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
 								<i class="fas fa-edit"></i>
 							</a>
-							<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
-								<i class="fas fa-trash-alt"></i>
-							</a>
+							@if ((User.IsInRole(Who.Admin)))
+							{
+								<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+
+							}
+
 						</td>
 					</tr>
 				}

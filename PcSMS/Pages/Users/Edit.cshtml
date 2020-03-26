@@ -1,5 +1,6 @@
 ﻿@page
 @model PcSMS.Pages.Users.EditModel
+@using PcSMS.Utility
 
 <br />
 <h2 class="text-info">Edit Customer</h2>
@@ -8,7 +9,6 @@
 	<div class=" border  backgroundWhite">
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<input asp-for="ApplicationUser.Id" hidden />
-		@*<input asp-for="ApplicationUser.Email" hidden />*@
 		<div class="form-group">
 			<div class="row">
 				<div class="col-sm-2">
@@ -76,21 +76,26 @@
 			</div>
 			<span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
 		</div>
-		<div class="form-group">
-			<div class="row">
-				<div class="col-sm-2">
-					<label asp-for="ApplicationUser.Roles" class="text-info"></label>
+		@if ((User.IsInRole(Who.Admin)))
+		{
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-2">
+						<label asp-for="ApplicationUser.Roles" class="text-info"></label>
+					</div>
+					<div class="col-sm-5">
+						@Html.DropDownListFor(
+								x => x.ApplicationUser.selectedRole,
+								Model.ApplicationUser.Roles,
+								new { @class = "form-control" }
+							)
+					</div>
 				</div>
-				<div class="col-sm-5">
-					@Html.DropDownListFor(
-							x => x.ApplicationUser.selectedRole,
-							Model.ApplicationUser.Roles,
-							new { @class = "form-control" }
-						)					
-				</div>
+
 			</div>
-			
-		</div>
+
+		}
+
 		<div class="form-group row">
 			<div class="col-5 offset-2">
 				<partial name="_EditAndBackToListButton" />

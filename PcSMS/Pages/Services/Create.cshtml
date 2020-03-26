@@ -1,0 +1,162 @@
+﻿@page
+@model PcSMS.Pages.Services.CreateModel
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-4 pb-2 row">
+	<div class="col-6">
+		<h2 class="text-info py-2">Create New Service</h2>
+	</div>
+	<div class="col-3 offset-3 text-right py-2">
+		<a asp-page="../Vessels/Index" asp-route-userId="@Model.VesselServiceVM.Vessel.UserId" class="btn btn-info form-control"> Back to List</a>
+	</div>
+</div>
+
+<div class="container backgroundWhite">
+	<div class="card">
+		<div class="card-header bg-primary text-light ml-0 row container">
+			<div class="col-1 text-center pt-3 text-light-50 ">
+				<i class="far fa-user fa-2x"></i>
+			</div>
+			<div class="col-5">
+				<label class="text-light">@Model.VesselServiceVM.Vessel.ApplicationUser.Name</label><br />
+				<label class="text-light">@Model.VesselServiceVM.Vessel.ApplicationUser.Email / @Model.VesselServiceVM.Vessel.ApplicationUser.PhoneNumber</label><br />
+
+			</div>
+
+			<div class="col-5 text-right">
+				<label class="text-light">@Model.VesselServiceVM.Vessel.Model @Model.VesselServiceVM.Vessel.Color</label><br />
+				<label class="text-light">@Model.VesselServiceVM.Vessel.Year </label>
+			</div>
+			<div class="col-1 text-center pt-3 text-light-50 ">
+				<i class="fas fa-ship fa-2x"></i>
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="post" style="width:100%">
+				<div class="container">
+					<input hidden asp-for="VesselServiceVM.Vessel.IN" />
+					<input hidden asp-for="VesselServiceVM.Vessel.Model" />
+					<input hidden asp-for="VesselServiceVM.Vessel.Color" />
+					<input hidden asp-for="VesselServiceVM.Vessel.UserId" />
+					<input hidden asp-for="VesselServiceVM.Vessel.Id" />
+
+					<div class="border rounded p-2">
+						<div class="row">
+							<div class="col-3">
+								<h4 class="text-info pl-3 pt-2 pb-1">Add Service</h4>
+							</div>
+							<div class="col-9 pb-1 pt-2">
+								<div class="row">
+									<div class="col-8">
+										<select asp-for="VesselServiceVM.ServiceDetails.ServiceTypeId"
+												asp-items="@(new SelectList(Model.VesselServiceVM.ServiceTypesList,"Id","Name"))"
+												class="form-control"></select>
+									</div>
+									<div class="col-4">
+										<button type="submit" asp-page-handler="AddToCart" class="form-control btn btn-info">
+											Add
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br />
+
+					<div class="border container rounded p-2">
+						<h3 class="text-info pb-2">Service Summary</h3>
+						@if (Model.VesselServiceVM.ServiceShoppingCart.Count == 0)
+						{
+							<p>
+								No service has been added yet. Please add a service to be performed.
+							</p>
+						}
+						else
+						{
+							<div class="row mt-3">
+								<div class="col-7">
+									<table class="table table-striped border">
+										<tr class="table-secondary">
+											<th>
+												@Html.DisplayNameFor(m => Model.VesselServiceVM.ServiceTypesList.FirstOrDefault().Name)
+											</th>
+											<th>
+												@Html.DisplayNameFor(m => Model.VesselServiceVM.ServiceTypesList.FirstOrDefault().Price)
+											</th>
+											<th>
+
+											</th>
+										</tr>
+										@foreach (var item in Model.VesselServiceVM.ServiceShoppingCart)
+										{
+											<tr>
+												<td>
+													@Html.DisplayFor(m => item.ServiceType.Name)
+												</td>
+												<td>
+													@Html.DisplayFor(m => item.ServiceType.Price)
+												</td>
+												<td>
+													<button type="submit" asp-page-handler="RemoveFromCart" asp-route-serviceTypeId="@item.ServiceTypeId" class="btn btn-danger form-control">
+														<i class="far fa-trash-alt"></i>
+													</button>
+												</td>
+											</tr>
+										}
+										<tr style="background-color:#e2fee2">
+											<td colspan="1">
+												<h6 class="text-success">Total Price :</h6>
+											</td>
+											<td colspan="2">
+												<h6 class="text-success">$@Model.VesselServiceVM.ServiceHeader.TotalPrice</h6>
+											</td>
+										</tr>
+
+									</table>
+								</div>
+								<div class="col-5 px-4 pb-2">
+									
+									<div class="row py-2">
+										<div class="col-12">
+											<textarea placeholder="Comments..." asp-for="VesselServiceVM.ServiceHeader.Details" class="form-control" style="height:100px">
+
+                                        </textarea>
+										</div>
+									</div>
+									<div class="row p-0">
+										<div class="col-12">
+											<button class="btn btn-success form-control">Service Completed</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	@*<script>
+		function validateInput() {
+			var miles = document.getElementById("txtMiles").value;
+
+			if (miles < 1) {
+				swal("Error!", "Miles cannot be empty or 0", "error");
+				return false;
+			}
+
+		}</script>*@
+
+}

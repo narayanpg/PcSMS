@@ -10,7 +10,7 @@ using PcSMS.Utility;
 
 namespace PcSMS.Pages.ServiceTypes
 {
-    [Authorize(Roles = Who.Admin)]
+    [Authorize()]
     public class IndexModel : PageModel
     {
 

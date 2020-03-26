@@ -30,23 +30,31 @@
 				<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
 					<partial name="_LoginPartial" />
 					<ul class="navbar-nav flex-grow-1">
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-page="/Index"><span class="nav-text-style">Home</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><span class="nav-text-style">Privacy</span></a>
-						</li>
-						
-						@if ((User.IsInRole(Who.Admin)))
+
+						@if ((User.IsInRole(Who.Admin)) || (User.IsInRole(Who.Staff)))
 						{
 							<li class="nav-item">
 								<a class="nav-link text-light" asp-area="" asp-page="/Users/Index"><span class="nav-text-style">Users</span></a>
 							</li>
 							<li class="nav-item">
+								<a class="nav-link" asp-area="" asp-page="/ServiceTypes/Index"><span class="nav-text-style">Service Types</span></a>
+							</li>
+						}
+
+						@if (User.IsInRole(Who.Customer))
+						{
+							<li class="nav-item">
+								<a class="nav-link" asp-area="" asp-page="/Vessels/Index"><span class="nav-text-style">Vessels</span></a>
+							</li>
+							<li class="nav-item">
 								<a class="nav-link" asp-area="" asp-page="/ServiceTypes/Index"><span class="nav-text-style">Services</span></a>
 							</li>
-
 						}
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><span class="nav-text-style">Privacy</span></a>
+						</li>
+
+
 					</ul>
 				</div>
 			</div>

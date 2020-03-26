@@ -12,6 +12,11 @@ for details on configuring this project to bundle and minify static web assets. 
 	border-radius: 10px;
 	margin-bottom: 30px;
 }
+
+.card-bg {
+	background-color:#65bad6;
+}
+
 .nav-text-style {
     font-weight: bold;
     color: #233FC8;
