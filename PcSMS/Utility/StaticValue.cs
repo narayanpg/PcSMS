@@ -7,6 +7,6 @@ namespace PcSMS.Utility
 {
     public static class StaticValue
     {
-        public const int PaginationUsersPageSize = 2;
+        public const int PaginationUsersPageSize = 10;
     }
 }

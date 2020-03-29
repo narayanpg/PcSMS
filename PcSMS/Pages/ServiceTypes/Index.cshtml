@@ -1,5 +1,6 @@
 ﻿@page
 @model PcSMS.Pages.ServiceTypes.IndexModel
+@using PcSMS.Utility
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -12,11 +13,14 @@
 		<div class="col-6">
 			<h2 class="text-info">Service Types</h2>
 		</div>
-		<div class="col-6 text-right">
-			<a asp-page="Create" class="btn btn-info">
-				<i class="fas fa-plus"></i>&nbsp; Create New
-			</a>
-		</div>
+		@if ((User.IsInRole(Who.Admin)) || (User.IsInRole(Who.Staff)))
+		{
+			<div class="col-6 text-right">
+				<a asp-page="Create" class="btn btn-info">
+					<i class="fas fa-plus"></i>&nbsp; Create New
+				</a>
+			</div>
+		}
 	</div>
 	<br />
 	<div>
@@ -47,20 +51,23 @@
 						</td>
 						<td style="width:150px;">
 							<div class="btn-group" role="group">
-
-								<a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
-									<i class="fas fa-edit"></i>
-								</a>&nbsp;&nbsp;
-
+								@if ((User.IsInRole(Who.Admin)) || (User.IsInRole(Who.Staff)))
+								{
+									<a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">
+										<i class="fas fa-edit"></i>
+									</a>
+								}
+								&nbsp; &nbsp;
 								<a class="btn btn-success text-white" asp-page="Details" asp-route-Id="@item.Id">
 									<i class="far fa-list-alt"></i>
-								</a>&nbsp;&nbsp;
-
-								<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
-									<i class="fas fa-trash-alt"></i>
-								</a>
+								</a>&nbsp; &nbsp;
+								@if ((User.IsInRole(Who.Admin)) || (User.IsInRole(Who.Staff)))
+								{
+									<a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">
+										<i class="fas fa-trash-alt"></i>
+									</a>
+								}
 							</div>
-
 						</td>
 					</tr>
 				}
