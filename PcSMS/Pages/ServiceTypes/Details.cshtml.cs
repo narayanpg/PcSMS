@@ -12,7 +12,7 @@ using PcSMS.Utility;
 
 namespace PcSMS.Pages.ServiceTypes
 {
-    [Authorize(Roles = Who.AdminAndStaff)]
+    [Authorize()]
     public class DetailsModel : PageModel
     {
         private readonly ApplicationDbContext _db;
